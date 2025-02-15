@@ -9,6 +9,75 @@
 </head>
 
 <body>
+    <div class="body">
+        <div class="main-container">
+            <div class="title">
+                <h1>Tic Tac Toe</h1>
+            </div>
+            <div class="game-options">
+                <button class="start-new-game-button">
+                    Start new game
+                </button>
+            </div>
+            <div class="game-status-container"></div>
+            <div class="board-container">
+                <button class="board-cell" data-row="0" data-col="0">
+                    <div class="marker"></div>
+                </button>
+                <button class="board-cell" data-row="0" data-col="1">
+                    <div class="marker"></div>
+                </button>
+                <button class="board-cell" data-row="0" data-col="2">
+                    <div class="marker"></div>
+                </button>
+
+                <button class="board-cell" data-row="1" data-col="0">
+                    <div class="marker"></div>
+                </button>
+                <button class="board-cell" data-row="1" data-col="1">
+                    <div class="marker"></div>
+                </button>
+                <button class="board-cell" data-row="1" data-col="2">
+                    <div class="marker"></div>
+                </button>
+
+                <button class="board-cell" data-row="2" data-col="0">
+                    <div class="marker"></div>
+                </button>
+                <button class="board-cell" data-row="2" data-col="1">
+                    <div class="marker"></div>
+                </button>
+                <button class="board-cell" data-row="2" data-col="2">
+                    <div class="marker"></div>
+                </button>
+            </div>
+        </div>
+        <dialog>
+            <button class="close-dialog-button">X</button>
+            <h1>
+                New Game
+            </h1>
+            <form class="new-game-form">
+                <fieldset>
+                    <legend>Player 1</legend>
+                    <label for="player1-name">Name</label>
+                    <input type="text" name="player1-name" id="player1-name" required>
+                    <label for="player1-color">Color</label>
+                    <input type="color" id="player1-color" name="player1-color" value="#5959ff">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Player 2</legend>
+                    <label for="player2-name">Name</label>
+                    <input type="text" name="player2-name" id="player2-name" required>
+                    <label for="player2-color">Color</label>
+                    <input type="color" id="player2-color" name="player2-color" value="#ff4040">
+                </fieldset>
+
+                <button class="submit-new-game-button">Start</button>
+            </form>
+        </dialog>
+    </div>
     <script src="script.js"></script>
 </body>
 
