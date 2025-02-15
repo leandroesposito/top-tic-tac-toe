@@ -24,6 +24,14 @@ function Gameboard() {
         return board.map(row => [...row]);
     }
 
+    function getColorBoard() {
+        return board.map(row => row.map(player => player?.getColor() ?? ""));
+    }
+
+    function getNameBoard() {
+        return board.map(row => row.map(player => player?.getName() ?? ""));
+    }
+
     function placeMarker(player, row, column) {
         if (0 <= row && row < 3 && 0 <= column && column < 3 &&
             board[row][column] === null) {
@@ -35,7 +43,9 @@ function Gameboard() {
 
     return {
         getBoard,
-        placeMarker
+        getColorBoard,
+        getNameBoard,
+        placeMarker,
     };
 }
 
@@ -122,8 +132,9 @@ function Game(player1, player2) {
 
     return {
         getStatus,
-        getBoard: board.getBoard,
-        printBoard: () => console.table(board.getBoard()),
+        getColorBoard: board.getColorBoard,
+        printColorBoard: () => console.table(board.getColorBoard()),
+        printnameBoard: () => console.table(board.getNameBoard()),
         playRound
     };
 }
