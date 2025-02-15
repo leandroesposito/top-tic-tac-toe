@@ -140,5 +140,89 @@ function Game(player1, player2) {
 }
 
 const ScreenController = (function () {
+    const gameBoardContainer = document.querySelector(".board-container");
+    const gameStatusContainer = document.querySelector(".game-status-container");
+    let game = null;
+    initControls();
+
+    function initControls() {
+        const dialog = document.querySelector("dialog");
+        const closeDialogButton = document.querySelector(".close-dialog-button");
+        const startNewGameButton = document.querySelector(".start-new-game-button");
+        const submitNewGameButton = document.querySelector(".submit-new-game-button");
+        const newGameForm = document.querySelector(".new-game-form");
+
+        closeDialogButton.addEventListener("click", () => dialog.close());
+
+        startNewGameButton.addEventListener("click", () => {
+            dialog.showModal();
+        });
+
+        submitNewGameButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            setupNewGame(newGameForm);
+            dialog.close();
+            newGameForm.reset();
+        });
+
+        gameBoardContainer.addEventListener("click", (event) => {
+            const target = event.target;
+            if (target.classList.contains("board-cell")) {
+                if (game) {
+                    game.playRound(
+                        target.dataset.row,
+                        target.dataset.column
+                    );
+
+                    renderGame();
+                }
+            }
+        });
+    }
+
+    function setupNewGame(form) {
+        const formData = new FormData(form);
+
+        const player1 = Player(
+            formData.get("player1-name"),
+            formData.get("player1-color")
+        );
+
+        const player2 = Player(
+            formData.get("player2-name"),
+            formData.get("player2-color")
+        );
+
+        game = Game(player1, player2);
+
+        renderGame();
+    }
+
+    function renderGame() {
+        renderBoard()
+        showGameStatus();
+    }
+
+    function renderBoard() {
+        const currentBoard = game.getColorBoard();
+
+        gameBoardContainer.innerHTML = "";
+        for (let row = 0; row < 3; row++) {
+            for (let column = 0; column < 3; column++) {
+                const button = document.createElement("button");
+                button.classList.add("board-cell");
+                button.dataset.row = row;
+                button.dataset.column = column;
+                button.style.setProperty("--marker-color", currentBoard[row][column]);
+
+                gameBoardContainer.appendChild(button);
+            }
+        }
+        // <button class="board-cell" data-row="0" data-col="0"></button>
+    }
+
+    function showGameStatus() {
+        gameStatusContainer.textContent = game.getStatus();
+    }
 
 })();
