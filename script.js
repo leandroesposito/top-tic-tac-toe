@@ -41,7 +41,7 @@ function Gameboard() {
 
 function Game(player1, player2) {
     const board = Gameboard();
-    const currentPlayer = player1;
+    let currentPlayer = player1;
 
     function changePlayerTurn() {
         if (currentPlayer === player1) {
@@ -61,25 +61,32 @@ function Game(player1, player2) {
     }
 
     function getWinner() {
+        const currentBoard = board.getBoard();
         for (let i = 0; i < 3; i++) {
             // row i
-            if (board[i][0] !== null && board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
-                return board[i][0];
+            if (currentBoard[i][0] !== null &&
+                currentBoard[i][0] == currentBoard[i][1] &&
+                currentBoard[i][0] == currentBoard[i][2]) {
+                return currentBoard[i][0];
             }
             // column i
-            if (board[0][i] !== null && board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
-                return board[0][i];
+            if (currentBoard[0][i] !== null &&
+                currentBoard[0][i] == currentBoard[1][i] &&
+                currentBoard[0][i] == currentBoard[2][i]) {
+                return currentBoard[0][i];
             }
         }
 
-        if (board[1][1] !== null) {
+        if (currentBoard[1][1] !== null) {
             if (
                 // negative diagonal
-                (board[0][0] === board[1][1] && board[0][0] === board[2][2]) ||
+                (currentBoard[0][0] === currentBoard[1][1] &&
+                    currentBoard[0][0] === currentBoard[2][2]) ||
                 // positive diagonal
-                (board[2][0] === board[1][1] && board[2][0] === board[0][2])
+                (currentBoard[2][0] === currentBoard[1][1] &&
+                    currentBoard[2][0] === currentBoard[0][2])
             ) {
-                return board[1][1];
+                return currentBoard[1][1];
             }
         }
 
@@ -87,10 +94,11 @@ function Game(player1, player2) {
     }
 
     function isDraw() {
+        const currentBoard = board.getBoard();
         for (let row = 0; row < 3; row++) {
             for (let column = 0; column < 3; column++) {
-                if (board[row][column] === null) {
-                    false;
+                if (currentBoard[row][column] === null) {
+                    return false;
                 }
             }
         }
@@ -109,7 +117,7 @@ function Game(player1, player2) {
             return "Draw.";
         }
 
-        return `Is ${currentPlayer.getName}'s turn.`
+        return `Is ${currentPlayer.getName()}'s turn.`
     }
 
     return {
