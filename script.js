@@ -40,7 +40,7 @@ function Gameboard() {
 }
 
 function Game(player1, player2) {
-    const board = board();
+    const board = Gameboard();
     const currentPlayer = player1;
 
     function changePlayerTurn() {
