@@ -114,7 +114,8 @@ function Game(player1, player2) {
 
     return {
         getStatus,
-        getBoard: board.getBoard(),
+        getBoard: board.getBoard,
+        printBoard: () => console.table(board.getBoard()),
         playRound
     };
 }
