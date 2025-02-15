@@ -214,11 +214,13 @@ const ScreenController = (function () {
                 button.dataset.row = row;
                 button.dataset.column = column;
                 button.style.setProperty("--marker-color", currentBoard[row][column]);
+                if (currentBoard[row][column] !== "") {
+                    button.style.setProperty("--marker-border", "5px solid black");
+                }
 
                 gameBoardContainer.appendChild(button);
             }
         }
-        // <button class="board-cell" data-row="0" data-col="0"></button>
     }
 
     function showGameStatus() {
