@@ -36,6 +36,26 @@ input {
     border-radius: 1rem;
 }
 
+.title h1 {
+    margin: 0;
+}
+
+.start-new-game-button {
+    padding: .5rem;
+    background-color: var(--bg-color-light);
+    box-shadow: 5px 5px black;
+    border-radius: .5rem;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.start-new-game-button:active {
+    translate: 5px 5px;
+    box-shadow: none;
+}
+
 .game-status-container {
     justify-self: stretch;
     padding: 1rem;
@@ -43,32 +63,33 @@ input {
     background-color: var(--bg-color-light);
     border-radius: .5rem;
     text-align: center;
+    font-weight: bold;
 }
 
 .board-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-}
-
-.board-container {
     width: calc(50vmin - 2rem);
     height: calc(50vmin - 2rem);
+    border: 2px solid var(--bg-color-light);
 }
 
 .board-cell {
     position: relative;
+    border: 2px solid var(--bg-color-light);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .board-cell::after {
     position: absolute;
     content: "";
-    top: 12.5%;
-    left: 12.5%;
+    top: 7.5%;
+    left: 7.5%;
     width: 75%;
     height: 75%;
     margin: auto;
     border-radius: 50%;
+    border: var(--marker-border);
     background-color: var(--marker-color);
 }
 
@@ -117,6 +138,10 @@ dialog button {
     background-color: var(--bg-color-light);
     border: 2px solid var(--body-color);
     font-size: 1rem;
+}
+
+dialog input:focus {
+    outline: 2px solid white;
 }
 
 dialog form {
