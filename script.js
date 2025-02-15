@@ -25,7 +25,8 @@ function Gameboard() {
     }
 
     function placeMarker(player, row, column) {
-        if (board[row][column] === null) {
+        if (0 <= row && row < 3 && 0 <= column && column < 3 &&
+            board[row][column] === null) {
             board[row][column] = player;
             return true;
         }
